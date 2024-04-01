@@ -1,0 +1,45 @@
+{% load static %}
+
+<!-- Featured Products -->
+
+<div class="small-container">
+    <h2 class="title">Featured Products</h2>
+   
+    <div class="row">
+        {%for products in featured_products%}
+        <div class="col-4">
+            <a href="{% url 'product_details' products.id %}"><img style="max-width:200px; height:300px;" src="{{products.image.url}}"></a>
+            <h4>{{products.title}}</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>${{products.price}}</p>
+        </div>
+        {% endfor %}
+    </div>
+   
+
+    <h2 class="title">Latest Products</h2>
+    <div class="row">
+        {%for products in latest_products%}
+        <div class="col-4">
+            <a href="{% url 'product_details' products.id %}"><img style="max-width:200px; height:300px;" src="{{products.image.url}}"></a>
+            <h4>{{products.title}}</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>${{products.price}}</p>
+        </div>
+        {% endfor %}
+    </div>
+   
+    
+</div>

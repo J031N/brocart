@@ -1,0 +1,62 @@
+{% load static %}
+<div class="account-page" >
+    <div class="container">
+        <div class="row">
+            <div class="col-2" style="margin-top:-150px">
+                <img src="{% static 'images/image1.png'%}" width="100%">
+            </div>
+            <div class="col-2" style="margin-top:-150px" >
+                <div  class="form-container" style="height: 500px;">
+                    <div class="form-btn">
+                        <span onclick="login()">Login</span>
+                        <span onclick="register()">Register</span>
+                        <hr id="Indicator">
+                    </div>
+                    
+                    <form id="LoginForm" method='post' enctype='multipart/form-data'>
+                     
+                        <input required type="text" name='username' placeholder="Username">
+                        <input required type="password" name='password' placeholder="Password">
+                        {% csrf_token %}
+                        <button style="background-color:green;" name="login" type="submit" class="btn">Login</button>
+                        <a href="">Forget Password</a>
+                        {% if messages %}
+                    <div>
+                        {% for mess in messages %}
+                        <p style="color:red; font-size:14px;">{{mess}}</p>
+                     
+                        {% endfor %}
+                       
+                        
+                    </div>
+                    {% endif %} 
+                    
+                               
+                       
+                    </form>
+
+                    <form id="RegForm" method='post' enctype='multipart/form-data'>
+                        {% csrf_token %}
+                        <input  type="text" name='username' required placeholder="Username" maxlength='10' minlength='4' >
+                        <input  type="email" name='email' required placeholder="Email">
+                        <input  type="password" name='password' required placeholder="Password" minlength='6'>
+                        <input  type="text" name='address' required placeholder="Address"  minlength='6'>
+                        <input  type="text" name='phone' required placeholder="Phone number"  minlength='10' maxlength="10">
+                        <button style="background-color:green;" name="register" type="submit" class="btn">Register</button>
+                        
+                        {% if messages %}
+                    <div>
+                        {% for message in messages %}
+                        <p style="color:red; font-size:14px;">{{message}}</p>
+                     
+                        {% endfor %}                       
+                    </div>
+                    {% endif %}
+                      
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
