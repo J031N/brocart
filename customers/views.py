@@ -22,7 +22,10 @@ def show_account(request):
         try:  
             user=User.objects.create_user(username=username,password=password,email=email)
             customer_details=customer.objects.create(user=user,phone=phone,address=adderss)
-           
+            success_message='user registered succefully'
+         
+            messages.success(request,success_message) 
+            
         except Exception as e:
             
             error_message="Duplicate username or invalid inputs"
@@ -38,7 +41,7 @@ def show_account(request):
         user=authenticate(username=username,password=password) 
         if user:
             login(request,user) 
-            return redirect('home') 
+            return redirect('home')
         else:
             error_login_message="invalid credentials" 
             messages.error(request,error_login_message) 

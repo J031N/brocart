@@ -18,12 +18,12 @@
                         <input required type="text" name='username' placeholder="Username">
                         <input required type="password" name='password' placeholder="Password">
                         {% csrf_token %}
-                        <button style="background-color:green;" name="login" type="submit" class="btn">Login</button>
+                        <button style="background-color:red;" name="login" type="submit" class="btn">Login</button>
                         <a href="">Forget Password</a>
                         {% if messages %}
                     <div>
-                        {% for mess in messages %}
-                        <p style="color:red; font-size:14px;">{{mess}}</p>
+                        {% for message in messages %}
+                        <p style="color:red; font-size:14px;">{{message}}</p>
                      
                         {% endfor %}
                        
@@ -37,18 +37,20 @@
 
                     <form id="RegForm" method='post' enctype='multipart/form-data'>
                         {% csrf_token %}
-                        <input  type="text" name='username' required placeholder="Username" maxlength='10' minlength='4' >
+                        <input  type="text" name='username' required placeholder="Username" maxlength='100' minlength='4' >
                         <input  type="email" name='email' required placeholder="Email">
                         <input  type="password" name='password' required placeholder="Password" minlength='6'>
                         <input  type="text" name='address' required placeholder="Address"  minlength='6'>
                         <input  type="text" name='phone' required placeholder="Phone number"  minlength='10' maxlength="10">
-                        <button style="background-color:green;" name="register" type="submit" class="btn">Register</button>
+                        <button style="background-color:red;" name="register" type="submit" class="btn">Register</button>
                         
                         {% if messages %}
                     <div>
                         {% for message in messages %}
-                        <p style="color:red; font-size:14px;">{{message}}</p>
-                     
+                        <p class="{{message.tags}}" style="font-size:14px;">{{message}}</p>
+                            {%if 'success' in message.tags %}
+                           <button class='loginn'><a class='a_btn'  href="{% url 'login' %}">Login</a></button> 
+                            {% endif %}
                         {% endfor %}                       
                     </div>
                     {% endif %}
@@ -60,3 +62,27 @@
         </div>
     </div>
 </div>
+
+<style>
+.error{
+    color:red;
+}
+.success{
+    color:green;
+}
+.loginn{
+    color:white;
+   
+    width: 100px;
+    border: none;
+    cursor: pointer;
+  
+    background-color:green;
+    padding:5px;
+    border-radius:10px;
+
+}
+.a_btn{
+    color:white;
+}
+</style>
