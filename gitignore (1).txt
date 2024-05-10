@@ -2,7 +2,7 @@
 
 ### OSX ###
 .DS_Store
-.AppleDoublehyrh
+.AppleDouble
 .LSOverride
 
 # Icon must end with two \r
